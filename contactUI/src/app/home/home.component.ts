@@ -4,6 +4,7 @@ import { ContactformService } from '../contactform.service';
 import { catchError, of } from 'rxjs';
 import { Router } from '@angular/router';
 import { FormArray } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +15,7 @@ export class HomeComponent implements OnInit {
   cLists: contactForm[] = [];
 
   constructor(private contactService:ContactformService,
-    private router: Router
+    private router: Router, private toastr: ToastrService
   ){
 
   }
@@ -43,6 +44,19 @@ export class HomeComponent implements OnInit {
       })
     ).subscribe((result)=>{
       this.router.navigate(['/contact'],{queryParams:result});
+    })
+  }
+
+  deleteContact(event:any){
+    this.contactService.deleteContact(event).pipe(
+      catchError(err => {
+        console.log(err);
+        this.toastr.error(err);
+        return of([]); 
+      })
+    ).subscribe((result)=>{
+      console.log(result);
+      this.toastr.success("Successfully Deleted");
     })
   }
 
