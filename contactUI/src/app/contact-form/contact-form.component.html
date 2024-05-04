@@ -5,6 +5,10 @@
                 <div class="bg-white border rounded shadow-sm overflow-hidden">
                     <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
                         <div class="row gy-3 gy-xl-3 p-3 p-xl-3">
+                            <div class="col-12">
+                                <input type="text" class="form-control" id="id" name="id"
+                                    formControlName="id" hidden>
+                            </div>
                             <div class="col-6">
                                 <label for="firstName" class="form-label">First Name <span
                                         class="text-danger">*</span></label>

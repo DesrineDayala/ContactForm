@@ -15,8 +15,7 @@ export class HomeComponent implements OnInit {
   cLists: contactForm[] = [];
 
   constructor(private contactService:ContactformService,
-    private router: Router, private toastr: ToastrService
-  ){
+    private router: Router){
 
   }
 
@@ -51,21 +50,90 @@ export class HomeComponent implements OnInit {
     this.contactService.deleteContact(event).pipe(
       catchError(err => {
         console.log(err);
-        this.toastr.error(err);
         return of([]); 
       })
     ).subscribe((result)=>{
-      console.log(result);
-      this.toastr.success("Successfully Deleted");
+      location.reload();
+      this.router.navigate(['/']);
     })
   }
 
-  sortData(key: string) {
-    this.cLists.sort((a, b) => {
-      const aValue = a['firstName'].toLowerCase();
-      const bValue = b['firstName'].toLowerCase();
-      return aValue.localeCompare(bValue);
-    });
+  sortData(str: any) {
+    switch(str){
+      case 'firstName': {
+        this.cLists.sort((a, b) => {
+          const aValue = a['firstName'].toLowerCase();
+          const bValue = b['firstName'].toLowerCase();
+          return aValue.localeCompare(bValue);
+        });
+        break; // Add break statement here
+      }
+      case 'lastName':{
+        this.cLists.sort((a, b) => {
+          const aValue = a['lastName'].toLowerCase();
+          const bValue = b['lastName'].toLowerCase();
+          return aValue.localeCompare(bValue);
+        });
+        break;
+      }
+      case 'email':{
+        this.cLists.sort((a, b) => {
+          const aValue = a['email'].toLowerCase();
+          const bValue = b['email'].toLowerCase();
+          return aValue.localeCompare(bValue);
+        });
+        break;
+      }
+      case 'phoneNumber':{
+        this.cLists.sort((a, b) => {
+          const aValue = a['phoneNumber'].toLowerCase();
+          const bValue = b['phoneNumber'].toLowerCase();
+          return aValue.localeCompare(bValue);
+        });
+        break;
+      }
+      case 'address':{
+        this.cLists.sort((a, b) => {
+          const aValue = a['address'].toLowerCase();
+          const bValue = b['address'].toLowerCase();
+          return aValue.localeCompare(bValue);
+        });
+        break;
+      }
+      case 'city':{
+        this.cLists.sort((a, b) => {
+          const aValue = a['city'].toLowerCase();
+          const bValue = b['city'].toLowerCase();
+          return aValue.localeCompare(bValue);
+        });
+        break;
+      }
+      case 'state':{
+        this.cLists.sort((a, b) => {
+          const aValue = a['state'].toLowerCase();
+          const bValue = b['state'].toLowerCase();
+          return aValue.localeCompare(bValue);
+        });
+        break;
+      }
+      case 'country':{
+        this.cLists.sort((a, b) => {
+          const aValue = a['country'].toLowerCase();
+          const bValue = b['country'].toLowerCase();
+          return aValue.localeCompare(bValue);
+        });
+        break;
+      }
+      case 'postalCode':{
+        this.cLists.sort((a, b) => {
+          const aValue = a['postalCode'].toLowerCase();
+          const bValue = b['postalCode'].toLowerCase();
+          return aValue.localeCompare(bValue);
+        });
+        break;
+      }
+    }
+    
   }
   
 }

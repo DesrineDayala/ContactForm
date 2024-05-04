@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ContactformService } from '../contactform.service';
 import { catchError, of } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
@@ -14,26 +14,26 @@ export class ContactFormComponent implements OnInit {
   userForm: FormGroup = new FormGroup({});
 
   constructor(private fb: FormBuilder,
-    private activeRoute: ActivatedRoute,
-    private contactService: ContactformService,
-    private toastr: ToastrService
-  ) {}
+    private activeRoute: ActivatedRoute,private toastr: ToastrService,private router: Router,
+    private contactService: ContactformService) {}
 
   ngOnInit(): void {
     this.userForm = this.fb.group({
+      id:[''],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      phoneNumber: ['', Validators.required, Validators.maxLength(10)],
-      address: ['', Validators.required, Validators.pattern('[a-zA-Z ]*')],
-      city: ['', Validators.required, Validators.pattern('[a-zA-Z]*')],
-      state: ['', Validators.required, Validators.pattern('[a-zA-Z ]*')],
-      country: ['', Validators.required, Validators.pattern('[a-zA-Z ]*')],
-      postalCode: ['', Validators.required, Validators.maxLength(6)]
+      email: ['', Validators.required],
+      phoneNumber: ['', Validators.required],
+      address: ['', Validators.required],
+      city: ['', Validators.required],
+      state: ['', Validators.required],
+      country: ['', Validators.required],
+      postalCode: ['', Validators.required]
     });
 
     this.activeRoute.queryParams.subscribe(params => {
       this.userForm.setValue({
+        id:params['id'],
         firstName: params['firstName']|| '',
         lastName: params['lastName']|| '',
         email: params['email']|| '',
@@ -48,15 +48,33 @@ export class ContactFormComponent implements OnInit {
   }
 
   onSubmit() {
-    this.contactService.createContact(this.userForm.value)
+    console.log(this.userForm.value.id);
+    if(this.userForm.value.id > 0){
+      this.contactService.updateContact(this.userForm.value).pipe(
+        catchError(err => {
+          console.log(err);
+          this.toastr.error(err, 'Error');
+          return of([]);
+        })
+      ).subscribe((result)=>{
+        this.toastr.success('Contact Updated', 'Success');
+        this.userForm.reset();
+        this.router.navigate(['/']);
+      })
+    }else{
+      this.contactService.createContact(this.userForm.value)
       .pipe(
         catchError(err => {
           console.log(err);
+          this.toastr.error(err, 'Error');
           return of([]);
         }))
       .subscribe((result) => {
-        this.toastr.success("Contact Created successfully");
+        this.toastr.success('Contact Created', 'Success');
         this.userForm.reset();
+        this.router.navigate(['/']);
       })
+    }
+    
   }
 }
