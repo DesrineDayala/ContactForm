@@ -17,19 +17,28 @@ namespace ContactFormApp.Services
         }
         public async Task<List<ContactDTO>> GetContactsList()
         {
-            var contactList = await _db.Contacts.ToListAsync();
-            var result = contactList.Select(e => new ContactDTO()
+            var result = new List<ContactDTO>();
+            try
             {
-                FirstName = e.FirstName,
-                LastName = e.LastName,
-                Email = e.Email,
-                Address = e.Address,
-                PhoneNumber = e.PhoneNumber,
-                City = e.City,
-                State = e.State,
-                Country = e.Country,
-                PostalCode = e.PostalCode,
-            }).ToList();
+                var contactList = await _db.Contacts.ToListAsync();
+                result = contactList.Select(e => new ContactDTO()
+                {
+                    FirstName = e.FirstName,
+                    LastName = e.LastName,
+                    Email = e.Email,
+                    Address = e.Address,
+                    PhoneNumber = e.PhoneNumber,
+                    City = e.City,
+                    State = e.State,
+                    Country = e.Country,
+                    PostalCode = e.PostalCode,
+                }).ToList();
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }                   
+
             return result;
         }
     }

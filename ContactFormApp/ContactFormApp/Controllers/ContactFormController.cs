@@ -1,4 +1,5 @@
-﻿using ContactFormApp.Services;
+﻿using ContactFormApp.Interfaces;
+using ContactFormApp.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ContactFormApp.Controllers
@@ -7,15 +8,15 @@ namespace ContactFormApp.Controllers
     [ApiController]
     public class ContactFormController : Controller
     {
-        private readonly ContactFormService _contactFormService;
+        private readonly IContactForm _contactForm;
 
-        public ContactFormController(ContactFormService contactFormService)
-        {
-            _contactFormService = contactFormService;
+        public ContactFormController(IContactForm contactForm) {
+            _contactForm = contactForm;
         }
         public string Index()
         {
-            return "Hi";
+            var contactData = _contactForm.GetContactsList();
+            return contactData.ToString();
         }
         
     }

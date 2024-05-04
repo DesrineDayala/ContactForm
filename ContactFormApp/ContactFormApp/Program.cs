@@ -7,8 +7,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<ApplicationDBContext>(options => options.UseSqlServer(
-builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddScoped<IContactForm, ContactFormService>();
+builder.Services.AddDbContext<ApplicationDBContext>(options =>
+        options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection"))
+);
 builder.Services.AddSwaggerDocument(settings =>
 {
     settings.Title = "ContactForm";
@@ -22,7 +25,6 @@ builder.Services.AddCors(options =>
             builder.WithOrigins("*").AllowAnyHeader().AllowAnyMethod();
         });
 });
-builder.Services.AddScoped<IContactForm,ContactFormService>();
 
 var app = builder.Build();
 
