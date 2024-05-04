@@ -17,9 +17,8 @@ namespace ContactFormApp.Controllers
             var formList = _db.Contacts.ToList();
             return formList.ToString();
         }
-        public string Welcome(string name, int numTimes = 1)
-        {
-            return HtmlEncoder.Default.Encode($"Hello {name}, NumTimes is: {numTimes}");
-        }
+
+
+        
     }
 }
