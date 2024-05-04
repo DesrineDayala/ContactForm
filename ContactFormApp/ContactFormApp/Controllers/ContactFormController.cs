@@ -1,24 +1,22 @@
-﻿using ContactFormApp.Data;
+﻿using ContactFormApp.Services;
 using Microsoft.AspNetCore.Mvc;
-using System.Text.Encodings.Web;
 
 namespace ContactFormApp.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class ContactFormController : Controller
     {
-        private readonly ApplicationDBContext _db;
+        private readonly ContactFormService _contactFormService;
 
-        public ContactFormController(ApplicationDBContext db)
+        public ContactFormController(ContactFormService contactFormService)
         {
-            _db = db;
+            _contactFormService = contactFormService;
         }
         public string Index()
         {
-            var formList = _db.Contacts.ToList();
-            return formList.ToString();
+            return "Hi";
         }
-
-
         
     }
 }

@@ -1,4 +1,6 @@
 using ContactFormApp.Data;
+using ContactFormApp.Interfaces;
+using ContactFormApp.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +13,16 @@ builder.Services.AddSwaggerDocument(settings =>
 {
     settings.Title = "ContactForm";
 });
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("ContactFormUI",
+        builder =>
+        {
+            builder.WithOrigins("*").AllowAnyHeader().AllowAnyMethod();
+        });
+});
+builder.Services.AddScoped<IContactForm,ContactFormService>();
 
 var app = builder.Build();
 
@@ -28,7 +40,7 @@ else
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
+app.UseCors("ContactFormUI");
 app.UseRouting();
 app.UseOpenApi();
 app.UseSwaggerUi();
