@@ -1,11 +1,12 @@
 export interface contactForm{
+    id:Number,
     firstName:string,
     lastName:string,
     email:string,
-    phone:string,
+    phoneNumber:string,
     address:string,
     city:string,
     state:string,
     country:string,
-    zip:string
+    postalCode:string
 }
