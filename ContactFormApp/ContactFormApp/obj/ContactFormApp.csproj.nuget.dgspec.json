@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\KNILA Project\\ContactFormApp\\ContactFormApp\\ContactFormApp.csproj": {}
+    "D:\\Knila project\\ContactForm\\ContactFormApp\\ContactFormApp\\ContactFormApp.csproj": {}
   },
   "projects": {
-    "E:\\KNILA Project\\ContactFormApp\\ContactFormApp\\ContactFormApp.csproj": {
+    "D:\\Knila project\\ContactForm\\ContactFormApp\\ContactFormApp\\ContactFormApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\KNILA Project\\ContactFormApp\\ContactFormApp\\ContactFormApp.csproj",
+        "projectUniqueName": "D:\\Knila project\\ContactForm\\ContactFormApp\\ContactFormApp\\ContactFormApp.csproj",
         "projectName": "ContactFormApp",
-        "projectPath": "E:\\KNILA Project\\ContactFormApp\\ContactFormApp\\ContactFormApp.csproj",
+        "projectPath": "D:\\Knila project\\ContactForm\\ContactFormApp\\ContactFormApp\\ContactFormApp.csproj",
         "packagesPath": "C:\\Users\\desrine\\.nuget\\packages\\",
-        "outputPath": "E:\\KNILA Project\\ContactFormApp\\ContactFormApp\\obj\\",
+        "outputPath": "D:\\Knila project\\ContactForm\\ContactFormApp\\ContactFormApp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

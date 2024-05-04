@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Nm2pGhn3pctQXwPbagZVy13f5BnQaoTt8iYoO11dQ0+FFtpzMQjo/+4vFpfVkNPIDtJxMuiPzp5UnqtRkkG1Tw==",
+  "dgSpecHash": "CEkALkeo24+xPJfcViWWtaQ+n7H6/dJeUaa1EcJziQ+Xv9k/oip6yjXKDbmgvQ3NBAOrczPHJFo7fMW08RbsMw==",
   "success": true,
-  "projectFilePath": "E:\\KNILA Project\\ContactFormApp\\ContactFormApp\\ContactFormApp.csproj",
+  "projectFilePath": "D:\\Knila project\\ContactForm\\ContactFormApp\\ContactFormApp\\ContactFormApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\desrine\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\desrine\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
