@@ -21,7 +21,7 @@ namespace ContactFormApp.Services
 
         public async Task<List<ContactDTO>> GetContacts()
         {
-            return await _db.Contacts
+            return await _db.Contacts.OrderByDescending(x=> x.Id)
                     .Select(contact => new ContactDTO
                     {
                         Id = contact.Id,

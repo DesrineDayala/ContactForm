@@ -19,11 +19,10 @@ export class ContactFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.userForm = this.fb.group({
-      id:[''],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      email: ['', Validators.required],
-      phoneNumber: ['', Validators.required],
+      email: ['', [Validators.required,Validators.email]],
+      phoneNumber: ['', [Validators.required,Validators.minLength(10),Validators.maxLength(10)]],
       address: ['', Validators.required],
       city: ['', Validators.required],
       state: ['', Validators.required],
